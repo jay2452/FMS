@@ -26,3 +26,4 @@ production:
   pool: 5
   database: feedback_management_production
   username: root
+  password: <%= ENV['FEEDBACK_PASSWORD'] %>
