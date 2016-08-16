@@ -21,7 +21,6 @@ test:
   database: db/test.sqlite3
 
 production:
-  production:
   adapter: mysql2
   pool: 5
   database: feedback_management_production
