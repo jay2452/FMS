@@ -1,0 +1,113 @@
+<% if current_user %>
+<% i = 1%>
+<div class="container">
+
+  <div align="center">
+    <h5><b>FEEDBACK FROM STUDENTS</b></h5>
+  </div>
+
+  <p>
+    <h6><u>Instructions</u></h6>
+    <ul>
+      <li>Do Not disclose your personal identity anywhere in the questionare .</li>
+      <li>Answer with sincerity and an open, unbiased mind .</li>
+      <li>Do not skip any questions .</li>
+      <li>Place a mark on the Radio button that reflects your choice in the column</li>
+    </ul>
+  </p>
+
+  <div class="row">
+    <div class="col s12 m3"></div>
+
+    <div class="col s12 m6">
+
+        <% @criterias.each do |criteria| %>
+          <div class="card-panel" style="width:200%;" id="card<%=i%>">
+            <br>
+            <div class="row">
+              <div class="col s12 m6">
+                <h6><%= i %>. <%= criteria.title %></h6>
+                <% if criteria.description != nil %>
+                  <%= criteria.description.html_safe %>
+                <% end %>
+              </div>
+
+              <div class="col s12 m6" align="center">
+                <br>
+                 <input name="group1<%= i %>" type="radio" id="test1<%= i %>" onclick="takeData(<%= 1 %>, <%= i%>)" />
+                 <label for="test1<%= i %>">1</label> <br>
+
+                 <input name="group1<%= i %>" type="radio" id="test2<%= i %>" onclick="takeData(<%= 2 %>, <%= i%>)" />
+                 <label for="test2<%= i %>">2</label> <br>
+
+                 <input name="group1<%= i %>" type="radio" id="test3<%= i %>" onclick="takeData(<%= 3 %>, <%= i%>)" />
+                 <label for="test3<%= i %>">3</label> <br>
+
+                 <input name="group1<%= i %>" type="radio" id="test4<%= i %>" onclick="takeData(<%= 4 %>, <%= i%>)" />
+                 <label for="test4<%= i %>">4</label> <br>
+
+                 <input name="group1<%= i %>" type="radio" id="test5<%= i %>" onclick="takeData(<%= 5 %>, <%= i%>)" />
+                 <label for="test5<%= i %>">5</label>
+
+              </div>
+            </div>
+          </div>
+          <% i += 1 %>
+        <% end %>
+
+        <!-- <button type="button" name="button" onclick="showSum()">Submit</button> -->
+        <a href="/feed_form/thankyou" class="btn waves-effect waves-light" onclick="showSum()">
+          <i class="material-icons right">send</i>Submit
+        </a>
+
+    </div>
+    <div class="col s12 m3"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var sum=0;
+  function takeData(number, i) {
+    sum += number;
+    $("#card"+i).closest('div').fadeOut();
+  }
+
+  function resetSum(number) {
+    sum = sum-number;
+    alert(sum);
+  }
+
+  function showSum() {
+
+    alert(sum);
+    $.ajax({
+        type:"POST",
+        cache:false,
+        url:"/feed_form/index",
+        data: { sum1 : sum, bar : 'foo', user_id : '<%= current_user.id %>' },    // multiple data sent using ajax
+        success: function (html) {
+          // $('#add').val('data sent sent');
+          // $('#msg').html(html);
+        }
+      });
+
+  }
+  // $("#submitFeed").click({
+  //   alert(sum);
+  //   $.ajax({
+  //       type:"POST",
+  //       cache:false,
+  //       url:"/feed_form/index",
+  //       data: { sum1 : sum, bar : 'foo' },    // multiple data sent using ajax
+  //       success: function (html) {
+  //         // $('#add').val('data sent sent');
+  //         // $('#msg').html(html);
+  //       }
+  //     });
+  // });
+
+</script>
+
+
+<% end %>

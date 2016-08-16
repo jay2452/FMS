@@ -1,0 +1,56 @@
+<%= form_for(feedback, html: {class: 'col s12'}) do |f| %>
+  <% if feedback.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
+
+      <ul>
+      <% feedback.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <div class="row">
+      <div class="col s12 m6">
+        <%= f.label :criteria %>
+        <%# f.text_field :criteria %>
+        <%# f.select :criteria_id, Criterium.all.collect { |c| [ c.title, c.id ] }, include_blank: true %>
+        <% Criterium.all.each do |criteria| %>
+          <div class="row">
+            <%= criteria.title %>
+          </div>
+
+        <% end %>
+      </div>
+
+      <div class="col s12 m6">
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="field">
+
+    <%= f.label :rating %>
+    <%# f.number_field :rating %>
+
+    <select name="feedback[rating]">
+      <option value=""></option>
+      <option value="1" selected="selected">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

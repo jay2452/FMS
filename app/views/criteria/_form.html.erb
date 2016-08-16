@@ -1,0 +1,28 @@
+<%= form_for(criterium) do |f| %>
+  <% if criterium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(criterium.errors.count, "error") %> prohibited this criterium from being saved:</h2>
+
+      <ul>
+      <% criterium.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-field col s12">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="input-field col s12">
+    <%= f.label :description %>
+    <%= f.cktext_area :description, ckeditor: { language: 'en' } %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save", class: "waves-effect waves-light btn-large" %>
+    <!-- <button type="button" name="button" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud</i>Save</button> -->
+  </div>
+<% end %>
