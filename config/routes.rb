@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'admin/index'
+  get 'admin/users_list'
+
+  post 'admin/subject_import'
+  post 'admin/user_import'
+
+
+  resources :student_subjects
+  resources :sections
+  resources :semesters
+  resources :programs
+  resources :faculty_subjects
+  resources :faculties
+  resources :subjects
   mount Ckeditor::Engine => '/ckeditor'
   get 'feed_form/index'
   get 'feed_form/thankyou'
@@ -9,7 +23,6 @@ Rails.application.routes.draw do
   resources :feedbacks
   resources :courses
   get 'home_pages/index'
-
 
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -27,5 +40,6 @@ Rails.application.routes.draw do
   end
 
   # root 'home_pages#index'
+
 
 end

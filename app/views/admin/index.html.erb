@@ -1,0 +1,20 @@
+<h1>Admin#index</h1>
+<p>Find me in app/views/admin/index.html.erb</p>
+
+
+<div>
+  <h4>Import Subject from Excel sheet </h4>
+  <%= form_tag admin_subject_import_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+  <% end %>
+</div>
+
+
+<div>
+  <h4>Import Users from Excel sheet </h4>
+  <%= form_tag admin_user_import_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+  <% end %>
+</div>

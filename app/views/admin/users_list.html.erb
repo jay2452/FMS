@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <% @users.each do |user| %>
+      <span>
+        <%= user.email %> &nbsp; <%= user.roll %> &nbsp; <%= user.name %> <br>
+      </span>
+    <% end %>
+  </div>
+</div>

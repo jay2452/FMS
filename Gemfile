@@ -59,3 +59,5 @@ gem 'rolify'
 gem 'cancancan'
 gem 'ckeditor'
 gem 'paperclip'
+
+gem 'roo'
