@@ -1,20 +1,22 @@
 <% if current_user %>
+
+<div class="container" id="program_check_div">
+  Program : <%= select_tag "program", options_from_collection_for_select(@programs, "id", "nane"), include_blank: true %>
+  Semester : <%= select_tag "semester", options_from_collection_for_select(@semesters, "id", "number"), include_blank: true %>
+  Subject : <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "name"), include_blank: true %>
+  Faculty : <%= select_tag "faculty", options_from_collection_for_select(@faculties, "id", "name"), include_blank: true %>
+  Batch : <%= select_tag "Batch", options_for_select([ "13-14", "14-15", "15-16", "16-17", "17-18" ]) %>
+
+  <button type="button" name="button" id="proceed_check">Proceed</button>
+</div>
+
+
 <% i = 1%>
-<div class="container">
+<div class="container" id="form_submission">
 
   <div align="center">
     <h5><b>FEEDBACK FROM STUDENTS</b></h5>
   </div>
-
-  <p>
-    <h6><u>Instructions</u></h6>
-    <ul>
-      <li>Do Not disclose your personal identity anywhere in the questionare .</li>
-      <li>Answer with sincerity and an open, unbiased mind .</li>
-      <li>Do not skip any questions .</li>
-      <li>Place a mark on the Radio button that reflects your choice in the column</li>
-    </ul>
-  </p>
 
   <div class="row">
     <div class="col s12 m3"></div>
@@ -27,27 +29,27 @@
             <div class="row">
               <div class="col s12 m6">
                 <h6><%= i %>. <%= criteria.title %></h6>
-                <% if criteria.description != nil %>
-                  <%= criteria.description.html_safe %>
-                <% end %>
+                <%# if criteria.description != nil %>
+                  <%# criteria.description.html_safe %>
+                <%# end %>
               </div>
 
-              <div class="col s12 m6" align="center">
+              <div class="col s12 m6" align="left">
                 <br>
                  <input name="group1<%= i %>" type="radio" id="test1<%= i %>" onclick="takeData(<%= 1 %>, <%= i%>)" />
-                 <label for="test1<%= i %>">1</label> <br>
+                 <label for="test1<%= i %>">Below Average</label> <br>
 
                  <input name="group1<%= i %>" type="radio" id="test2<%= i %>" onclick="takeData(<%= 2 %>, <%= i%>)" />
-                 <label for="test2<%= i %>">2</label> <br>
+                 <label for="test2<%= i %>">Average</label> <br>
 
                  <input name="group1<%= i %>" type="radio" id="test3<%= i %>" onclick="takeData(<%= 3 %>, <%= i%>)" />
-                 <label for="test3<%= i %>">3</label> <br>
+                 <label for="test3<%= i %>">good</label> <br>
 
                  <input name="group1<%= i %>" type="radio" id="test4<%= i %>" onclick="takeData(<%= 4 %>, <%= i%>)" />
-                 <label for="test4<%= i %>">4</label> <br>
+                 <label for="test4<%= i %>">Very Good</label> <br>
 
                  <input name="group1<%= i %>" type="radio" id="test5<%= i %>" onclick="takeData(<%= 5 %>, <%= i%>)" />
-                 <label for="test5<%= i %>">5</label>
+                 <label for="test5<%= i %>">Outstanding</label>
 
               </div>
             </div>
@@ -66,6 +68,9 @@
 </div>
 
 <script type="text/javascript">
+  $('select').material_select();
+
+  $("#form_submission").closest('div').hide();
 
   var sum=0;
   function takeData(number, i) {
@@ -91,21 +96,12 @@
           // $('#msg').html(html);
         }
       });
-
   }
-  // $("#submitFeed").click({
-  //   alert(sum);
-  //   $.ajax({
-  //       type:"POST",
-  //       cache:false,
-  //       url:"/feed_form/index",
-  //       data: { sum1 : sum, bar : 'foo' },    // multiple data sent using ajax
-  //       success: function (html) {
-  //         // $('#add').val('data sent sent');
-  //         // $('#msg').html(html);
-  //       }
-  //     });
-  // });
+
+  $("#proceed_check").click(function(){
+    $("#program_check_div").closest('div').fadeOut();
+    $("#form_submission").closest('div').fadeIn();
+  });
 
 </script>
 

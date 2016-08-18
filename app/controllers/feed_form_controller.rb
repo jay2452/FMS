@@ -5,9 +5,16 @@ class FeedFormController < ApplicationController
     @criterias = Criterium.all
 
     @criteria_count = @criterias.count
+    @semesters = Semester.all
+    @programs = Program.all
+    @subjects = Subject.all
+    @faculties = Faculty.all
   end
 
   def thankyou
-    
   end
+
+  def instruction
+  end
+
 end

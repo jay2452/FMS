@@ -21,3 +21,19 @@ Faculty.create! emp_id: "4493", name: "Prof. Ipsita Nayak"
 Faculty.create! emp_id: "", name: "Prof. Shyam Sundar Rajaram"
 Faculty.create! emp_id: "2495", name: "Prof. Surya Mishra"
 Faculty.create! emp_id: "2856", name: "Prof. Kumar Mohanty"
+
+
+Program.destroy_all
+Program.create! nane: "MBA"
+Program.create! nane: "BBA"
+Program.create! nane: "DMBA"
+
+
+Semester.destroy_all
+(1..6).each do |i|
+  Semester.create! number: i
+end
+
+
+Section.destroy_all
+('A'..'J').each { |chr| Section.create! name: chr }

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :subjects
   mount Ckeditor::Engine => '/ckeditor'
   get 'feed_form/index'
+  get 'feed_form/instruction'
   get 'feed_form/thankyou'
 
   post 'feed_form/index'
@@ -35,7 +36,7 @@ Rails.application.routes.draw do
     end
 
     authenticated do
-      root 'feed_form#index', as: :authenticated_user
+      root 'feed_form#instruction', as: :authenticated_user
     end
   end
 
