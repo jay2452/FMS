@@ -13,15 +13,20 @@
 
   <div class="field">
     <%= f.label :subject_id %>
-    <%= f.text_field :subject_id %>
+    <%= f.select :subject_id, Subject.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
   </div>
 
   <div class="field">
     <%= f.label :faculty_id %>
-    <%= f.text_field :faculty_id %>
+    <%= f.select :faculty_id, Faculty.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Assign Faculty to Subject" %>
   </div>
 <% end %>
+
+
+<script>
+  $('select').material_select();
+</script>

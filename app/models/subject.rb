@@ -1,5 +1,9 @@
 class Subject < ApplicationRecord
 
+  has_many :faculties, through: :faculty_subjects
+  has_many :faculty_subjects
+
+
   def self.import(file)
     spreadsheet = open_spreadsheet(file)   # => defined in ApplicationRecord.rb file
     header = spreadsheet.row 1

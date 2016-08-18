@@ -1,0 +1,1 @@
+json.partial! "user_sections/user_section", user_section: @user_section

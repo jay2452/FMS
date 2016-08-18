@@ -14,8 +14,8 @@
   <tbody>
     <% @faculty_subjects.each do |faculty_subject| %>
       <tr>
-        <td><%= faculty_subject.subject %></td>
-        <td><%= faculty_subject.faculty %></td>
+        <td><%= faculty_subject.subject.name %></td>
+        <td><%= faculty_subject.faculty.name %></td>
         <td><%= link_to 'Show', faculty_subject %></td>
         <td><%= link_to 'Edit', edit_faculty_subject_path(faculty_subject) %></td>
         <td><%= link_to 'Destroy', faculty_subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>

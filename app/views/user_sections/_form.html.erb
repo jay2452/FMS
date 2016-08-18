@@ -1,0 +1,29 @@
+<%= form_for(user_section) do |f| %>
+  <% if user_section.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_section.errors.count, "error") %> prohibited this user_section from being saved:</h2>
+
+      <ul>
+      <% user_section.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id, placeholder: "Enter Roll Number" %>
+    <%# f.select :user_id, User.all.collect { |p| [ p.roll, p.id ] }, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :section_id %>
+    <%# f.text_field :section_id %>
+    <%= f.select :section_id, Section.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
