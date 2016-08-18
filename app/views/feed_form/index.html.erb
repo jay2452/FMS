@@ -88,18 +88,18 @@
   function showSum() {
     alert(sum);
     $.ajax({
-        type:"POST",
-        cache:false,
-        url:"/feed_form/index",
+        type: "POST",
+        cache: false,
+        url: "/feed_form/user_input",
         data: {
           sum1 : sum,
           bar : 'foo',
           user_id : '<%= current_user.id %>',
-          program_id : $("#program").val(),
-          subject_id : $("#subject").val(),
+          program_id  : $("#program").val(),
+          subject_id  : $("#subject").val(),
           semester_id : $("#semester").val(),
-          faculty_id : $("#faculty").val(),
-          batch : $("#batch").val()
+          faculty_id  : $("#faculty").val(),
+          batch       : $("#batch").val()
         },    // multiple data sent using ajax
         success: function (html) {
           // $('#add').val('data sent sent');

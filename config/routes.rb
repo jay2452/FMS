@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'admin/users_list'
 
   post 'admin/subject_import'
-  post 'admin/user_import'
+  post 'admin/user_input'
 
 
   resources :student_subjects
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'feed_form/index'
   get 'feed_form/instruction'
   get 'feed_form/thankyou'
+  post 'feed_form/user_input'
 
   post 'feed_form/index'
 

@@ -12,6 +12,21 @@ class FeedFormController < ApplicationController
   end
 
   def thankyou
+
+  end
+
+  def user_input
+    sum = params["sum1"].to_i
+    sum = sum/10
+    user_id = params["user_id"]
+    program_id = params["program_id"]
+    subject_id = params["subject_id"]
+    semester_id = params["semester_id"]
+    faculty_id = params["faculty_id"]
+    batch = params["batch"]
+
+    Feedback.create!(rating: sum, subject_id: subject_id, faculty_id: faculty_id, semester_id: semester_id, program_id: program_id)
+
   end
 
   def instruction
