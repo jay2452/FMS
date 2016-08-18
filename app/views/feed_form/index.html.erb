@@ -5,7 +5,7 @@
   Semester : <%= select_tag "semester", options_from_collection_for_select(@semesters, "id", "number"), include_blank: true %>
   Subject : <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "name"), include_blank: true %>
   Faculty : <%= select_tag "faculty", options_from_collection_for_select(@faculties, "id", "name"), include_blank: true %>
-  Batch : <%= select_tag "Batch", options_for_select([ "13-14", "14-15", "15-16", "16-17", "17-18" ]) %>
+  Batch : <%= select_tag "batch", options_for_select([ "13-14", "14-15", "15-16", "16-17", "17-18" ]) %>
 
   <button type="button" name="button" id="proceed_check">Proceed</button>
 </div>
@@ -72,6 +72,8 @@
 
   $("#form_submission").closest('div').hide();
 
+
+
   var sum=0;
   function takeData(number, i) {
     sum += number;
@@ -84,13 +86,21 @@
   }
 
   function showSum() {
-
     alert(sum);
     $.ajax({
         type:"POST",
         cache:false,
         url:"/feed_form/index",
-        data: { sum1 : sum, bar : 'foo', user_id : '<%= current_user.id %>' },    // multiple data sent using ajax
+        data: {
+          sum1 : sum,
+          bar : 'foo',
+          user_id : '<%= current_user.id %>',
+          program_id : $("#program").val(),
+          subject_id : $("#subject").val(),
+          semester_id : $("#semester").val(),
+          faculty_id : $("#faculty").val(),
+          batch : $("#batch").val()
+        },    // multiple data sent using ajax
         success: function (html) {
           // $('#add').val('data sent sent');
           // $('#msg').html(html);
