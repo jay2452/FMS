@@ -10,6 +10,9 @@ class FeedFormController < ApplicationController
     # @subjects = current_user.subjects
     @faculties = Faculty.all
 
+
+    current_month = Time.now.month
+
     user_ratings = UserRating.where("user_id = ?", current_user.id)
     s_ids = [] # => contains subject id for which user has given feed back
     user_ratings.each do |user_rating|
@@ -72,6 +75,7 @@ class FeedFormController < ApplicationController
     # => fetch all the subjects which the user is allowed to give feedback
     # @subjects = Subject.where.not("id = ?", s_ids) # => it wll show the subjects for which user has not given any review in that month
     @subjects = current_user.subjects - Subject.where("id IN (?)", s_ids)
+
   end
 
 end
