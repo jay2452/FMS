@@ -1,16 +1,28 @@
 <div class="container">
-  <p>
-    <h6><u>Instructions</u></h6>
-    <ul>
-      <li>Do Not disclose your personal identity anywhere in the questionare .</li>
-      <li>Answer with sincerity and an open, unbiased mind .</li>
-      <li>Do not skip any questions .</li>
-      <li>Place a mark on the Radio button that reflects your choice in the column</li>
-    </ul>
-  </p>
+  <div class="row">
+    <div class="col s12 m6">
+      <p>
+        <h6><u>Instructions</u></h6>
+        <ul>
+          <li>Do Not disclose your personal identity anywhere in the questionare .</li>
+          <li>Answer with sincerity and an open, unbiased mind .</li>
+          <li>Do not skip any questions .</li>
+          <li>Place a mark on the Radio button that reflects your choice in the column</li>
+        </ul>
+      </p>
 
-  <a href="/feed_form/index" class="btn waves-effect waves-light">
-    <i class="material-icons right">send</i>Proceed
-  </a>
+      <a href="/feed_form/index" class="btn waves-effect waves-light">
+        <i class="material-icons right">send</i>Proceed
+      </a>
+    </div>
 
+    <div class="col s12 m6">
+      <h5>Subjects in which user has not given feedback</h5>
+      <% @subjects.each do |subject| %>
+        <%= subject.name %> <br>
+      <% end %>
+
+    </div>
+
+  </div>
 </div>

@@ -3,6 +3,10 @@ class Subject < ApplicationRecord
   has_many :faculties, through: :faculty_subjects
   has_many :faculty_subjects
 
+  has_many :users, through: :student_subjects
+  has_many :student_subjects
+
+
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)   # => defined in ApplicationRecord.rb file

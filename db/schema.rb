@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818162329) do
+ActiveRecord::Schema.define(version: 20160819101417) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -91,13 +91,14 @@ ActiveRecord::Schema.define(version: 20160818162329) do
   end
 
   create_table "student_subjects", force: :cascade do |t|
-    t.integer  "student_id"
     t.integer  "section_id"
     t.integer  "semester_id"
     t.integer  "subject_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
     t.index ["subject_id"], name: "index_student_subjects_on_subject_id"
+    t.index ["user_id"], name: "index_student_subjects_on_user_id"
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -105,6 +106,18 @@ ActiveRecord::Schema.define(version: 20160818162329) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_ratings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "subject_id"
+    t.integer  "month_no"
+    t.integer  "year"
+    t.boolean  "rating_given"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["subject_id"], name: "index_user_ratings_on_subject_id"
+    t.index ["user_id"], name: "index_user_ratings_on_user_id"
   end
 
   create_table "user_sections", force: :cascade do |t|

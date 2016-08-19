@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   get 'admin/users_list'
 
   post 'admin/subject_import'
-  post 'admin/user_input'
-
+  post 'admin/user_import'
+  post 'admin/user_subject_import'
 
   resources :student_subjects
   resources :sections

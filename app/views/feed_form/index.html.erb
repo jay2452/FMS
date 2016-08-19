@@ -11,7 +11,7 @@
 </div>
 
 
-<% i = 1%>
+<% i = 1 %>
 <div class="container" id="form_submission">
 
   <div align="center">
@@ -87,6 +87,9 @@
 
   function showSum() {
     alert(sum);
+    var d = new Date();
+    var month_no = d.getMonth();
+    var year = d.getFullYear();
     $.ajax({
         type: "POST",
         cache: false,
@@ -99,7 +102,9 @@
           subject_id  : $("#subject").val(),
           semester_id : $("#semester").val(),
           faculty_id  : $("#faculty").val(),
-          batch       : $("#batch").val()
+          batch       : $("#batch").val(),
+          month_no    : month_no,
+          year        : year
         },    // multiple data sent using ajax
         success: function (html) {
           // $('#add').val('data sent sent');

@@ -1,9 +1,12 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :subjects, through: :student_subjects
+  has_many :student_subjects
 
    def self.import(file)
      spreadsheet = open_spreadsheet(file)   # => defined in ApplicationRecord.rb file
