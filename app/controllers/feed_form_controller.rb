@@ -1,5 +1,6 @@
 class FeedFormController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_month_year
 
   def index
     @criterias = Criterium.all
@@ -10,10 +11,7 @@ class FeedFormController < ApplicationController
     # @subjects = current_user.subjects
     @faculties = Faculty.all
 
-    current_month = Time.now.month
-    current_year = Time.now.year
-
-    user_ratings = UserRating.where("user_id = ? AND month_no = ? AND year = ?", current_user.id, current_month, current_year)
+    user_ratings = UserRating.where("user_id = ? AND month_no = ? AND year = ?", current_user.id, @current_month, @current_year)
     s_ids = [] # => contains subject id for which user has given feed back
     user_ratings.each do |user_rating|
       s_ids << user_rating.subject_id
@@ -24,7 +22,7 @@ class FeedFormController < ApplicationController
     puts "============================="
     # => fetch all the subjects which the user is allowed to give feedback
     # @subjects = Subject.where.not("id = ?", s_ids) # => it wll show the subjects for which user has not given any review in that month
-    @subjects = current_user.subjects - Subject.where("id IN (?)", s_ids)
+    @subjects = current_user.subjects - current_user.subjects.where("subject_id IN (?)", s_ids)
   end
 
   def thankyou
@@ -56,21 +54,15 @@ class FeedFormController < ApplicationController
     #
     # puts "+++++++++++++++++++++++++++++"
 
-    Feedback.create!(rating: sum, subject_id: subject_id, faculty_id: faculty_id, semester_id: semester_id, program_id: program_id)
+    Feedback.create!(rating: sum, subject_id: subject_id, faculty_id: faculty_id, semester_id: semester_id, program_id: program_id, month_no: month_no, year: year)
     #  to check user has given any rating or nor
     UserRating.create! user_id: user_id, rating_given: true, subject_id: subject_id, month_no: month_no, year: year
   end
 
   def instruction
 
-    @current_month = Time.now.month
-    @current_year = Time.now.year
-    puts "+++++++++++++++++"
-      p @current_month
-      p @current_year
-    puts "+++++++++++++++++"
 
-    user_ratings = UserRating.where("user_id = ? AND month_no = ? AND year = ?", current_user.id, @current_month, @current_year)
+    user_ratings = UserRating.where("user_id = ? AND month_no = ? AND year = ?", current_user.id, @current_month , @current_year)
     s_ids = [] # => contains subject id for which user has given feed back
     user_ratings.each do |user_rating|
       s_ids << user_rating.subject_id
@@ -81,8 +73,15 @@ class FeedFormController < ApplicationController
     puts "============================="
     # => fetch all the subjects which the user is allowed to give feedback
     # @subjects = Subject.where.not("id = ?", s_ids) # => it wll show the subjects for which user has not given any review in that month
-    @subjects = current_user.subjects - Subject.where("id IN (?)", s_ids)
+    @subjects = current_user.subjects - current_user.subjects.where("subject_id IN (?)", s_ids)
 
   end
+
+  private
+    def check_month_year
+      a = Time.now
+      @current_month = a.month
+      @current_year = a.year
+    end
 
 end

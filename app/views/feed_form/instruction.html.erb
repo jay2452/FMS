@@ -11,15 +11,21 @@
         </ul>
       </p>
 
-      <a href="/feed_form/index" class="btn waves-effect waves-light">
-        <i class="material-icons right">send</i>Proceed
-      </a>
+      <% if @subjects != nil %>
+        <a href="/feed_form/index" class="btn waves-effect waves-light">
+          <i class="material-icons right">send</i>Proceed
+        </a>
+      <% end %>      
     </div>
 
     <div class="col s12 m6">
-      <h5>Subjects in which user has not given feedback for the month of <b><%= get_month_from_no @current_month %></b></h5>
-      <% @subjects.each do |subject| %>
-        <%= subject.name %> <br>
+      <% if @subjects != nil %>
+        <h5>Subjects in which user has not given feedback for the month of <b><%= get_month_from_no @current_month %></b></h5>
+        <% @subjects.each do |subject| %>
+          <%= subject.name %> <br>
+        <% end %>
+      <% else %>
+        <h5>Feedback given in all subjects for month : <b><%= get_month_from_no @current_month %></b></h5>
       <% end %>
 
     </div>

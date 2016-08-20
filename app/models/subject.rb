@@ -6,8 +6,6 @@ class Subject < ApplicationRecord
   has_many :users, through: :student_subjects
   has_many :student_subjects
 
-
-
   def self.import(file)
     spreadsheet = open_spreadsheet(file)   # => defined in ApplicationRecord.rb file
     header = spreadsheet.row 1

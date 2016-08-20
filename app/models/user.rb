@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :subjects, through: :student_subjects
   has_many :student_subjects
 
+  has_one :section, through: :user_section
+  has_one :user_section
+
    def self.import(file)
      spreadsheet = open_spreadsheet(file)   # => defined in ApplicationRecord.rb file
      header = spreadsheet.row 1

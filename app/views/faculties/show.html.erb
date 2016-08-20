@@ -10,5 +10,37 @@
   <%= @faculty.name %>
 </p>
 
+<p>
+  <strong>Feedback : </strong>
+  <br>
+  <table>
+    <thead>
+      <tr>
+        <td>Ratings</td>
+        <td>Subject</td>
+        <td>Program</td>
+        <td>Semester</td>
+        <td>Month</td>
+        <td>Year</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @faculty.feedbacks.each do |feedback| %>
+        <tr>
+          <td><%= feedback.rating %></td>
+          <td><%= feedback.subject.name %></td>
+          <td><%= feedback.program.nane %></td>
+          <td><%= feedback.semester.number %></td>
+          <td><%= feedback.month_no %></td>
+          <td><%= feedback.year %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</p>
+
+
 <%= link_to 'Edit', edit_faculty_path(@faculty) %> |
 <%= link_to 'Back', faculties_path %>
