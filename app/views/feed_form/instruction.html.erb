@@ -17,7 +17,7 @@
     </div>
 
     <div class="col s12 m6">
-      <h5>Subjects in which user has not given feedback</h5>
+      <h5>Subjects in which user has not given feedback for the month of <b><%= get_month_from_no @current_month %></b></h5>
       <% @subjects.each do |subject| %>
         <%= subject.name %> <br>
       <% end %>

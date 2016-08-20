@@ -10,10 +10,10 @@ class FeedFormController < ApplicationController
     # @subjects = current_user.subjects
     @faculties = Faculty.all
 
-
     current_month = Time.now.month
+    current_year = Time.now.year
 
-    user_ratings = UserRating.where("user_id = ?", current_user.id)
+    user_ratings = UserRating.where("user_id = ? AND month_no = ? AND year = ?", current_user.id, current_month, current_year)
     s_ids = [] # => contains subject id for which user has given feed back
     user_ratings.each do |user_rating|
       s_ids << user_rating.subject_id
@@ -41,21 +41,20 @@ class FeedFormController < ApplicationController
     batch = params["batch"]
     month_no = params["month_no"]
     year = params["year"]
-
-    puts "+++++++++++++++++++++++++++++"
-
-      puts sum
-      puts user_id
-      puts program_id
-      puts subject_id
-      puts semester_id
-      puts faculty_id
-      puts batch
-      puts month_no
-      puts year
-
-    puts "+++++++++++++++++++++++++++++"
-
+    #
+    # puts "+++++++++++++++++++++++++++++"
+    #
+    #   puts sum
+    #   puts user_id
+    #   puts program_id
+    #   puts subject_id
+    #   puts semester_id
+    #   puts faculty_id
+    #   puts batch
+    #   puts month_no
+    #   puts year
+    #
+    # puts "+++++++++++++++++++++++++++++"
 
     Feedback.create!(rating: sum, subject_id: subject_id, faculty_id: faculty_id, semester_id: semester_id, program_id: program_id)
     #  to check user has given any rating or nor
@@ -63,7 +62,15 @@ class FeedFormController < ApplicationController
   end
 
   def instruction
-    user_ratings = UserRating.where("user_id = ?", current_user.id)
+
+    @current_month = Time.now.month
+    @current_year = Time.now.year
+    puts "+++++++++++++++++"
+      p @current_month
+      p @current_year
+    puts "+++++++++++++++++"
+
+    user_ratings = UserRating.where("user_id = ? AND month_no = ? AND year = ?", current_user.id, @current_month, @current_year)
     s_ids = [] # => contains subject id for which user has given feed back
     user_ratings.each do |user_rating|
       s_ids << user_rating.subject_id
