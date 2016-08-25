@@ -5,11 +5,57 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks.json
   def index
     @feedbacks = Feedback.all
+    @subjects = Subject.all
+    @faculties = Faculty.all
   end
 
   # GET /feedbacks/1
   # GET /feedbacks/1.json
   def show
+  end
+
+  def faculty
+    @faculty = Faculty.find_by_id(params[:faculty])
+    @fac_feedbacks = Feedback.where("faculty_id = ?", @faculty.id).select(:faculty_id, :subject_id, :month_no, :year).distinct  # list of feedbacks for a particular faculty
+
+    puts "==================="
+    months = @fac_feedbacks.select(:month_no, :year).distinct
+    arr = []
+    months.each do |month|
+      arr << month.month_no
+    end
+    
+    p arr.uniq
+    puts "==================="
+    # @total_rating = 0
+    # arr = []
+    #
+    # @fac_feedbacks.each do |feed|
+    #   rating = 0
+    #   @total_rating += feed.rating
+    #
+    #   @fac_feedbacks.where("subject_id = ?", feed.subject_id).each do |rate|
+    #     rating += rate.rating
+    #   end
+    #   puts "++++++++++++++++++++"
+    #     puts rating
+    #   puts "+++++++++++++++++++++"
+    #
+    #   arr << feed.subject.id # => contains the subject ids of feedback given
+    #
+    # end
+
+    # calculate the number of times each subject came
+    # arr.uniq!
+    # puts "==================="
+    #   p arr
+    # puts "==================="
+
+    # @fac_feedbacks_uniq = ("subject_id IN (?)", arr)
+    # arr.each do |item|
+    #   sub_count = number_frequency(arr, item) # => number of times feedback was given to a particular subject
+    # end
+
   end
 
   # GET /feedbacks/new

@@ -1,0 +1,32 @@
+<div class="container">
+  <%= @faculty.name %> <br>
+
+  <!-- Total rating : <%# @total_rating %> <br> -->
+
+
+<% rate = 0 %>
+
+  <h5>Subjects Associated </h5>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Subject Name</th>
+        <th>Month</th>
+        <th>Subject Rating</th>
+      </tr>
+    </thead>
+      <% @fac_feedbacks.each do |fac_feed| %>
+        <tr>
+          <td> <%= fac_feed.subject.name %> </td>
+          <td><%= get_month_from_no fac_feed.month_no %></td>
+          <td><%= calc_rating(fac_feed)  %></td>
+        </tr>
+      <% end %>
+    <tbody>
+
+    </tbody>
+  </table>
+
+</div>

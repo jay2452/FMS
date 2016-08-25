@@ -1,5 +1,35 @@
 <p id="notice"><%= notice %></p>
 
+<div class="container">
+  <div class="row">
+    <div class="col s12 m4">
+      <!-- <h6>select Faculty</h6> -->
+      <%# @subjects.each do |subject| %>
+        <%# link_to subject.name, '#' %>
+      <%# end %>
+      <%# @faculties.each do |faculty| %>
+        <%# link_to faculty.name, "#" %>
+      <%# end %>
+
+      <%= form_tag feedbacks_faculty_path do  %>
+        <%= select_tag "faculty", options_from_collection_for_select(@faculties, "id", "name") %>
+        <%= submit_tag "fetch records" %>
+      <% end %>
+
+
+    </div>
+
+    <div class="col s12 m4">
+
+    </div>
+
+    <div class="col s12 m4">
+
+    </div>
+  </div>
+</div>
+
+
 <h1>Feedbacks</h1>
 
 <table>

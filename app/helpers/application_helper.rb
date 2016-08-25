@@ -1,4 +1,36 @@
 module ApplicationHelper
+
+  def calc_rating(feedback)
+    faculty_id = feedback.faculty_id
+    subject_id = feedback.subject_id
+    month = feedback.month_no
+    year = feedback.year
+
+    @feeds = Feedback.where("faculty_id = ? AND subject_id = ? AND month_no = ? AND year = ?", faculty_id, subject_id, month, year)
+    rate = 0
+    count = 0
+    @feeds.each do |feed|
+      rate += feed.rating
+      count += 1
+    end
+    return rate/count
+  end
+
+  def number_frequency(arr, number)
+    count = 0
+  	arr.each do |n|
+  		if n == number
+  			count += 1
+  		end
+  	end
+  	puts count
+    return count
+  end
+
+  def fac_rating_in_subject(fac_id, subject_id)
+
+  end
+
   def get_month_from_no month
     if month == 1
       "January"

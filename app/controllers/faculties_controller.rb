@@ -10,6 +10,9 @@ class FacultiesController < ApplicationController
   # GET /faculties/1
   # GET /faculties/1.json
   def show
+    @feedbacks = @faculty.feedbacks
+    arr = []
+    
   end
 
   # GET /faculties/new

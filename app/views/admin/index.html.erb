@@ -26,3 +26,11 @@
     <%= submit_tag "Import" %>
   <% end %>
 </div>
+
+<div>
+  <h4>Import FacultySubject from Excel sheet </h4>
+  <%= form_tag admin_faculty_subject_import_path, multipart: true do %>
+    <%= file_field_tag :faculty_subject_file %>
+    <%= submit_tag "Import" %>
+  <% end %>
+</div>

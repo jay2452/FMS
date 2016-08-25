@@ -19,23 +19,12 @@ class User < ApplicationRecord
        # if row["code"].empty? == false
          # subject = find_by_code(row["code"])
        # else
-       search_user = User.find_by_email(row["roll"].to_s + "@ksom.ac.in")
-      if search_user == nil
-        search_user = User.new
+       search_user = find_by_email(row["roll"].to_s + "@ksom.ac.in") || User.new
         search_user.name = row["name"]
         search_user.roll = row["roll"]
         search_user.email = row["roll"].to_s + "@ksom.ac.in"
         search_user.password = "123456789"
         search_user.save!
-      end
-
-      if search_user != nil
-        search_user.name = row["name"]
-        search_user.roll = row["roll"]
-        search_user.email = row["roll"].to_s + "@ksom.ac.in"
-        search_user.password = "123456789"
-        search_user.save!
-      end # => end of if
-    end # => end of do
+      end # => end of do
   end # => end of def
 end # => end of class

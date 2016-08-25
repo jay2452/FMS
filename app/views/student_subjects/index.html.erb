@@ -6,8 +6,8 @@
   <thead>
     <tr>
       <th>Student</th>
-      <th>Section</th>
-      <th>Semester</th>
+      <!-- <th>Section</th>
+      <th>Semester</th> -->
       <th>Subject</th>
       <th colspan="3"></th>
     </tr>
@@ -17,8 +17,8 @@
     <% @student_subjects.each do |student_subject| %>
       <tr>
         <td><%= student_subject.user.roll %></td>
-        <td><%= student_subject.section.name %></td>
-        <td><%= student_subject.semester.number %></td>
+        <td><%# student_subject.section.name %></td>
+        <td><%# student_subject.semester.number %></td>
         <td><%= student_subject.subject.name %></td>
         <td><%= link_to 'Show', student_subject %></td>
         <td><%= link_to 'Edit', edit_student_subject_path(student_subject) %></td>

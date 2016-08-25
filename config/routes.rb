@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'admin/subject_import'
   post 'admin/user_import'
   post 'admin/user_subject_import'
+  post 'admin/faculty_subject_import'
 
   resources :student_subjects
   resources :sections
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
 
   resources :criteria
   resources :feedbacks
+  post 'feedbacks/faculty'
   resources :courses
   get 'home_pages/index'
 
