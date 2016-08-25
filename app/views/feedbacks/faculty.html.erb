@@ -7,7 +7,11 @@
 <% rate = 0 %>
 
   <h5>Subjects Associated </h5>
+  <% @faculty.subjects.each do |subject| %>
+    <%= subject.name %> <br>
+  <% end %>
 
+<h5>Ratings given </h5>
 
   <table>
     <thead>
