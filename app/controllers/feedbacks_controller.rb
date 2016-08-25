@@ -24,7 +24,7 @@ class FeedbacksController < ApplicationController
     months.each do |month|
       arr << month.month_no
     end
-    
+
     p arr.uniq
     puts "==================="
     # @total_rating = 0
