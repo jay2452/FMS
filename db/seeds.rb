@@ -54,6 +54,19 @@ Semester.destroy_all
   Semester.create! number: i
 end
 
+Criterium.destroy_all
+Criterium.create! title: 'Subject knowledge'
+Criterium.create! title: 'Language Competance'
+Criterium.create! title: 'Teaching Ability'
+Criterium.create! title: 'Innovativeness and variation in Teaching method used'
+Criterium.create! title: 'Class Control and handling of discipline'
+Criterium.create! title: 'Subject matter coverage'
+Criterium.create! title: 'Manner of teaching the subject'
+Criterium.create! title: 'Clearing of doubts of students in class'
+Criterium.create! title: 'What grade would you give to the instructor'
+Criterium.create! title: 'Overall learing value from the course'
+
+
 
 Section.destroy_all
 ('A'..'J').each { |chr| Section.create! name: chr }
