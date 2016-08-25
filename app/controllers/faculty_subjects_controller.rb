@@ -1,6 +1,6 @@
 class FacultySubjectsController < ApplicationController
   before_action :set_faculty_subject, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /faculty_subjects
   # GET /faculty_subjects.json
   def index

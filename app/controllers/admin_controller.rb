@@ -1,4 +1,8 @@
 class AdminController < ApplicationController
+
+  before_action :authenticate_user!
+  before_action :check_role
+
   def index
   end
 
@@ -26,4 +30,13 @@ class AdminController < ApplicationController
     FacultySubject.import params[:faculty_subject_file]
     redirect_to faculty_subjects_path, notice: "Faculty Subject Imported !!"
   end
+
+  def check_role
+    if current_user.has_role? :admin
+      
+    else
+        redirect_to root_url
+    end
+  end
+
 end

@@ -32,6 +32,10 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  authenticated :user, lambda {|u| u.has_role? :admin} do
+       root "admin#index", :as => "admin"
+  end
+
   devise_scope :user do
     get '/login' => 'devise/sessions#new', as: :login
     delete '/logout' => 'devise/sessions#destroy', as: :logout

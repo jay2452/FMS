@@ -1,6 +1,6 @@
 class CriteriaController < ApplicationController
   before_action :set_criterium, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /criteria
   # GET /criteria.json
   def index

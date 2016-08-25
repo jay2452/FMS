@@ -1,6 +1,6 @@
 class UserSectionsController < ApplicationController
   before_action :set_user_section, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /user_sections
   # GET /user_sections.json
   def index

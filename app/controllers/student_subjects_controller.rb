@@ -1,6 +1,6 @@
 class StudentSubjectsController < ApplicationController
   before_action :set_student_subject, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /student_subjects
   # GET /student_subjects.json
   def index

@@ -1,6 +1,6 @@
 class FacultiesController < ApplicationController
   before_action :set_faculty, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /faculties
   # GET /faculties.json
   def index
@@ -12,7 +12,7 @@ class FacultiesController < ApplicationController
   def show
     @feedbacks = @faculty.feedbacks
     arr = []
-    
+
   end
 
   # GET /faculties/new

@@ -1,5 +1,18 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+<h5>Admin#index</h5>
+
+<div class="container">
+  <%= link_to "Feedbacks", feedbacks_path %> <br>
+</div>
+
+<% if current_user.has_role? :super_admin %>
+
+<div class="container">
+  <%= link_to "Subjects", subjects_path %> <br>
+  <%= link_to "Faculties", faculties_path %> <br>
+  <%= link_to "Programs", programs_path %> <br>
+  <%= link_to "Sections", sections_path %> <br>
+  <%= link_to "Faculty Subjects", faculty_subjects_path %>
+</div>
 
 
 <div>
@@ -34,3 +47,5 @@
     <%= submit_tag "Import" %>
   <% end %>
 </div>
+
+<% end %>
