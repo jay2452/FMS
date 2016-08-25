@@ -10,13 +10,13 @@ class Ability
     #   else
     #     can :read, :all
     #   end
-    if user.has_role? :admin
-      can :manage, :all
-    else
-      can :read, Criterium
-      can :write, Feedback
-      can :write, UserRating
-    end
+    # if user.has_role? :admin
+    #   can :manage, :all
+    # else
+    #   can :read, Criterium
+    #   can :write, Feedback
+    #   can :write, UserRating
+    # end
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
