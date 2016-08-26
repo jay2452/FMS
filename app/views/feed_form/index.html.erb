@@ -5,7 +5,7 @@
   Semester : <%= select_tag "semester", options_from_collection_for_select(@semesters, "id", "number"), include_blank: true %>
   Subject : <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "name"), include_blank: true %>
   Faculty : <%= select_tag "faculty", options_from_collection_for_select(@faculties, "id", "name"), include_blank: true %>
-  Batch : <%= select_tag "batch", options_for_select([ "13-14", "14-15", "15-16", "16-17", "17-18" ]) %>
+  Batch : <%= select_tag "batch", options_for_select([  "16-17", "17-18", "13-14", "14-15", "15-16" ]) %>
 
   <button type="button" name="button" id="proceed_check">Proceed</button>
 </div>
@@ -82,11 +82,11 @@
 
   function resetSum(number) {
     sum = sum-number;
-    alert(sum);
+    // alert(sum);
   }
 
   function showSum() {
-    alert(sum);
+    // alert(sum);
     var d = new Date();
     var month_no = d.getMonth();
     var year = d.getFullYear();

@@ -1,8 +1,10 @@
 class FeedFormController < ApplicationController
   before_action :authenticate_user!
   before_action :check_month_year
+  before_action :check_sign_in_count
 
   def index
+
     @criterias = Criterium.all
 
     @criteria_count = @criterias.count
@@ -29,8 +31,8 @@ class FeedFormController < ApplicationController
   end
 
   def user_input
-    sum = params["sum1"].to_i
-    sum = sum/10
+    sum = params["sum1"].to_f
+    sum = sum/10.0
     user_id = params["user_id"]
     program_id = params["program_id"]
     subject_id = params["subject_id"]
@@ -61,7 +63,6 @@ class FeedFormController < ApplicationController
 
   def instruction
 
-
     user_ratings = UserRating.where("user_id = ? AND month_no = ? AND year = ?", current_user.id, @current_month , @current_year)
     s_ids = [] # => contains subject id for which user has given feed back
     user_ratings.each do |user_rating|
@@ -82,6 +83,14 @@ class FeedFormController < ApplicationController
       a = Time.now
       @current_month = a.month
       @current_year = a.year
+    end
+
+    def check_sign_in_count
+      puts "+++++++++++++++++++++"
+      # if current_user.sign_in_count < 2
+      #   puts "+++++++++++++++++++++"
+      #   redirect_to edit_user_registration_path, notice: "Please Change your password"
+      # end
     end
 
 end

@@ -13,7 +13,7 @@ module ApplicationHelper
       rate += feed.rating
       count += 1
     end
-    return rate/count
+    return (rate/count).to_f
   end
 
   def number_frequency(arr, number)

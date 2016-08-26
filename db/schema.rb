@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825085631) do
+ActiveRecord::Schema.define(version: 20160826074219) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 20160825085631) do
   end
 
   create_table "feedbacks", force: :cascade do |t|
-    t.integer  "rating"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "subject_id"
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160825085631) do
     t.integer  "program_id"
     t.integer  "month_no"
     t.integer  "year"
+    t.float    "rating"
     t.index ["faculty_id"], name: "index_feedbacks_on_faculty_id"
     t.index ["program_id"], name: "index_feedbacks_on_program_id"
     t.index ["semester_id"], name: "index_feedbacks_on_semester_id"
