@@ -11,7 +11,7 @@
               <h4> <%# resource_name.to_s.humanize %> Change Password </h4>
 
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-                <%= devise_error_messages! %>
+                <h6><small><%= devise_error_messages! %></small></h6>
 
                 <div class="field">
                   <%= f.label :email %><br />
