@@ -18,23 +18,23 @@
     <h5><b>FEEDBACK FROM STUDENTS</b></h5>
   </div>
 
-  <div class="row">
-    <div class="col s12 m3"></div>
+  <div>
+    <div class="col m3"> </div>
 
-    <div class="col s12 m6">
+    <div class="col m6">
 
         <% @criterias.each do |criteria| %>
           <div class="card-panel" id="card<%=i%>">
             <br>
             <div class="row">
-              <div class="col s12 m6">
+              <div class="col m6">
                 <h6><%= i %>. <%= criteria.title %></h6>
                 <%# if criteria.description != nil %>
                   <%# criteria.description.html_safe %>
                 <%# end %>
               </div>
 
-              <div class="col s12 m6" align="left">
+              <div class="col m6" align="left">
                 <br>
                  <input name="group1<%= i %>" type="radio" id="test1<%= i %>" onclick="takeData(<%= 1 %>, <%= i%>)" />
                  <label for="test1<%= i %>">Below Average</label> <br>
@@ -63,8 +63,9 @@
         </a>
 
     </div>
-    <div class="col s12 m3"></div>
+    <div class="col m3"></div>
   </div>
+  <br>
 </div>
 
 <script type="text/javascript">
