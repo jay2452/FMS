@@ -1,5 +1,5 @@
 <div class="container">
-  <% if user_signed_in? && (current_user.sign_in_count < 2) %>
+  <% if user_signed_in? %>
     <%= link_to "Change Password", edit_user_registration_path %>
   <% end %>
   <div class="row">
