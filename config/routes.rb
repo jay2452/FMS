@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'feed_form/instruction'
   get 'feed_form/thankyou'
   post 'feed_form/user_input'
+  post 'feed_form/render_faculty'
 
   post 'feed_form/index'
 

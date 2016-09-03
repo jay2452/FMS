@@ -3,10 +3,22 @@
 <% if current_user %>
 
 <div class="container" id="program_check_div">
-  Program : <%= select_tag "program", options_from_collection_for_select(@programs, "id", "nane"), include_blank: true %>
-  Semester : <%= select_tag "semester", options_from_collection_for_select(@semesters, "id", "number"), include_blank: true %>
-  Subject : <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "name"), include_blank: true %>
-  Faculty : <%= select_tag "faculty", options_from_collection_for_select(@faculties, "id", "name"), include_blank: true %>
+  <div>
+      Program : <%= select_tag "program", options_from_collection_for_select(@programs, "id", "nane"), include_blank: true %>
+  </div>
+
+  <div>
+      Semester : <%= select_tag "semester", options_from_collection_for_select(@semesters, "id", "number"), include_blank: true %>
+  </div>
+
+  <div>
+      Subject : <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "name"), include_blank: true %>
+  </div>
+
+  <div id="render_faculty">
+      <!-- Faculty : <%# select_tag "faculty", options_from_collection_for_select(@faculties, "id", "name"), include_blank: true %> -->
+  </div>
+
   Batch : <%= select_tag "batch", options_for_select([  "16-17", "17-18", "13-14", "14-15", "15-16" ]) %>
 
   <button type="button" name="button" id="proceed_check">Proceed</button>
@@ -60,9 +72,12 @@
         <% end %>
 
         <!-- <button type="button" name="button" onclick="showSum()">Submit</button> -->
-        <a href="/feed_form/thankyou" class="btn waves-effect waves-light" onclick="showSum()">
-          <i class="material-icons right">send</i>Submit
-        </a>
+        <div class="center">
+          <span class="btn waves-effect waves-light" onclick="showSum()">
+            <i class="material-icons right">send</i>Submit
+          </span>
+        </div>
+
 
     </div>
     <div class="col m3"></div>
@@ -75,11 +90,36 @@
 
   $("#form_submission").closest('div').hide();
 
+  $("#subject").on('change', function () {
+    $.ajax({
+      type: 'POST',
+      cache: false,
+      url: "/feed_form/render_faculty",
+      data: {
+        subject_id  : $("#subject").val()
+      },
+      success : function (html) {
+        // teachers =
+        var htmlText = "Faculty : <select name='faculty' id='faculty'>";
+
+        for(var i=0; i<html.length; i++) {
+          var id = html[i].id.toString();
+          htmlText += "<option value="+id+">"+html[i].name+"</option>";
+        }
+        htmlText += "</select>";
+        console.log(htmlText);
+        $('#render_faculty').html(htmlText);
+        $('select').material_select();
+      }
+    });
+  });
 
 
   var sum=0;
+  var map = {};
   function takeData(number, i) {
-    sum += number;
+
+    map[i] = number;
     $("#card"+i).closest('div').fadeOut();
   }
 
@@ -89,6 +129,10 @@
   }
 
   function showSum() {
+    sum = 0;
+    for(var q in map) {
+      sum += map[q];
+    }
     // alert(sum);
     var d = new Date();
     var month_no = d.getMonth();
@@ -112,6 +156,10 @@
         success: function (html) {
           // $('#add').val('data sent sent');
           // $('#msg').html(html);
+            document.location.href="/feed_form/thankyou";
+          //
+          //
+
         }
       });
   }

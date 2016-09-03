@@ -78,6 +78,16 @@ class FeedFormController < ApplicationController
 
   end
 
+  def render_faculty
+    sub_id = params["subject_id"].to_i
+    puts "--------+++++++++++++++__________________"
+     p Subject.find(sub_id).faculties.to_json
+    puts "--------+++++++++++++++__________________"
+
+    render json: Subject.find(sub_id).faculties.to_json
+
+  end
+
   private
     def check_month_year
       a = Time.now
@@ -86,7 +96,7 @@ class FeedFormController < ApplicationController
     end
 
     def check_sign_in_count
-      puts "+++++++++++++++++++++"
+      # puts "+++++++++++++++++++++"
       # if current_user.sign_in_count < 2
       #   puts "+++++++++++++++++++++"
       #   redirect_to edit_user_registration_path, notice: "Please Change your password"
