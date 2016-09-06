@@ -51,5 +51,6 @@ Rails.application.routes.draw do
 
   # root 'home_pages#index'
 
+  get '*path' => redirect('/')
 
 end
