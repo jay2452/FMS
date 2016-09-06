@@ -20,14 +20,18 @@
       <tr>
         <th>Subject Name</th>
         <th>Month</th>
+        <th>Year</th>
         <th>Subject Rating</th>
+        <!-- <th>Student Count</th> -->
       </tr>
     </thead>
       <% @fac_feedbacks.each do |fac_feed| %>
         <tr>
           <td> <%= fac_feed.subject.name %> </td>
           <td><%= get_month_from_no fac_feed.month_no %></td>
+          <td><%= fac_feed.year %></td>
           <td><%= calc_rating(fac_feed)  %></td>
+          <!-- <td><%# student_count fac_feed %></td> -->
         </tr>
       <% end %>
     <tbody>
