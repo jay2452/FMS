@@ -3,10 +3,11 @@ module ApplicationHelper
   def calc_rating(feedback)
     faculty_id = feedback.faculty_id
     subject_id = feedback.subject_id
+    program_id = feedback.program_id
     month = feedback.month_no
     year = feedback.year
 
-    @feeds = Feedback.where("faculty_id = ? AND subject_id = ? AND month_no = ? AND year = ?", faculty_id, subject_id, month, year)
+    @feeds = Feedback.where("faculty_id = ? AND subject_id = ? AND program_id = ? AND month_no = ? AND year = ?", faculty_id, subject_id, program_id, month, year)
     rate = 0
     count = 0
     @feeds.each do |feed|
@@ -19,10 +20,11 @@ module ApplicationHelper
   def student_count(feedback)
     faculty_id = feedback.faculty_id
     subject_id = feedback.subject_id
+    program_id = feedback.program_id
     month = feedback.month_no
     year = feedback.year
 
-    @feeds = Feedback.where("faculty_id = ? AND subject_id = ? AND month_no = ? AND year = ?", faculty_id, subject_id, month, year)
+    @feeds = Feedback.where("faculty_id = ? AND subject_id = ? AND program_id = ? AND month_no = ? AND year = ?", faculty_id, subject_id, program_id, month, year)
     rate = 0
     count = 0
     @feeds.each do |feed|

@@ -18,7 +18,7 @@ class FeedbacksController < ApplicationController
   def faculty
     @faculty = Faculty.find_by_id(params[:faculty])
     @program = Program.find_by_id(params[:program])
-    @fac_feedbacks = Feedback.where("faculty_id = ? AND program_id = ?", @faculty.id, @program.id).select(:faculty_id, :subject_id, :month_no, :year).distinct  # list of feedbacks for a particular faculty
+    @fac_feedbacks = Feedback.where("faculty_id = ? AND program_id = ?", @faculty.id, @program.id).select(:faculty_id, :subject_id, :program_id, :month_no, :year).distinct  # list of feedbacks for a particular faculty
 
     puts "==================="
     months = @fac_feedbacks.select(:month_no, :year).distinct
@@ -27,7 +27,8 @@ class FeedbacksController < ApplicationController
       arr << month.month_no
     end
 
-    p arr.uniq
+    # p arr.uniq
+    p @fac_feedbacks
     puts "==================="
     # @total_rating = 0
     # arr = []
