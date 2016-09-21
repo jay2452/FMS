@@ -4,9 +4,13 @@
 
 <div class="container">
 
-  <%= link_to "Change Password", edit_user_registration_path %> <br>
+  <%= link_to "Change Password", edit_user_registration_path, class: "btn waves-effect waves-light"  %> <br>
 
-  <%= link_to "Feedbacks", feedbacks_path %> <br>
+  <br>
+  <%= link_to "Feedbacks", feedbacks_path, class: "btn waves-effect waves-light"  %> <br>
+
+  <br>
+  <span class="btn waves-effect waves-light">Students who have not given Feedback for current month</span>
 </div>
 
 <% if current_user.has_role? :super_admin %>

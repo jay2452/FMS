@@ -1,7 +1,7 @@
 <% provide :title, "#{@faculty.name} details" %>
 
 <div class="container">
-  <h4><%= @faculty.name %></h4>
+  <h4><%= @faculty.name %> <small>(<%= @program.nane %>)</small> </h4>
 
   <!-- Total rating : <%# @total_rating %> <br> -->
 
@@ -22,7 +22,7 @@
         <th>Month</th>
         <th>Year</th>
         <th>Subject Rating</th>
-        <!-- <th>Student Count</th> -->
+        <th>Student Count</th>
       </tr>
     </thead>
       <% @fac_feedbacks.each do |fac_feed| %>
@@ -31,7 +31,7 @@
           <td><%= get_month_from_no fac_feed.month_no %></td>
           <td><%= fac_feed.year %></td>
           <td><%= calc_rating(fac_feed)  %></td>
-          <!-- <td><%# student_count fac_feed %></td> -->
+          <td><%= student_count fac_feed %></td>
         </tr>
       <% end %>
     <tbody>

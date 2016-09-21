@@ -7,6 +7,7 @@ class FeedbacksController < ApplicationController
     @feedbacks = Feedback.all
     @subjects = Subject.all
     @faculties = Faculty.all
+    @programs = Program.all
   end
 
   # GET /feedbacks/1
@@ -16,7 +17,8 @@ class FeedbacksController < ApplicationController
 
   def faculty
     @faculty = Faculty.find_by_id(params[:faculty])
-    @fac_feedbacks = Feedback.where("faculty_id = ?", @faculty.id).select(:faculty_id, :subject_id, :month_no, :year).distinct  # list of feedbacks for a particular faculty
+    @program = Program.find_by_id(params[:program])
+    @fac_feedbacks = Feedback.where("faculty_id = ? AND program_id = ?", @faculty.id, @program.id).select(:faculty_id, :subject_id, :month_no, :year).distinct  # list of feedbacks for a particular faculty
 
     puts "==================="
     months = @fac_feedbacks.select(:month_no, :year).distinct

@@ -15,7 +15,8 @@
 
       <%= form_tag feedbacks_faculty_path do  %>
         <%= select_tag "faculty", options_from_collection_for_select(@faculties, "id", "name") %>
-        <%= submit_tag "fetch records" %>
+        <%= select_tag "program", options_from_collection_for_select(@programs, "id", "nane") %>
+        <%= submit_tag "fetch records", class: "btn waves-effect waves-light" %>
       <% end %>
 
 
