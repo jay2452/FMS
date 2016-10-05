@@ -1,9 +1,20 @@
 <div class="container">
-  <div class="row">
-    <% @users.each do |user| %>
+  <!-- <div class="row">
+    <%# @users.each do |user| %>
       <span>
-        <%= user.email %> &nbsp; <%= user.roll %> &nbsp; <%= user.name %> <br>
+        <%# user.email %> &nbsp; <%# user.roll %> &nbsp; <%# user.name %> <br>
       </span>
+    <%# end %>
+  </div> -->
+
+  <div class="row">
+
+    <h5>Users who have not given feedback</h5>
+
+    <% users_not_given_feedback.each do |user| %>
+      <%= user.email %> <br>
     <% end %>
   </div>
+
+
 </div>

@@ -10,7 +10,8 @@
   <%= link_to "Feedbacks", feedbacks_path, class: "btn waves-effect waves-light"  %> <br>
 
   <br>
-  <span class="btn waves-effect waves-light">Students who have not given Feedback for current month</span>
+  <!-- <span class="">Students who have not given Feedback for current month</span> -->
+  <%= link_to "Students who have not given Feedback" , admin_users_list_path, class: "btn waves-effect waves-light" %>
 </div>
 
 <% if current_user.has_role? :super_admin %>

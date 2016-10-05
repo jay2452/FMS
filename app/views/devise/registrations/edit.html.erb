@@ -25,7 +25,7 @@
                 <% end %>
 
                 <div class="field">
-                  <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                  <%= f.label :new_password %> <br />
                   <%= f.password_field :password, autocomplete: "off" %>
                   <% if @minimum_password_length %>
                     <br />
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="field">
-                  <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+                  <%= f.label :current_password %> <br />
                   <%= f.password_field :current_password, autocomplete: "off" %>
                 </div>
 
