@@ -154,11 +154,31 @@
           year        : year
         },    // multiple data sent using ajax
         success: function (html) {
-          // $('#add').val('data sent sent');
-          // $('#msg').html(html);
-            document.location.href="/feed_form/thankyou";
-          //
-          //
+            console.log(html);
+            // fac_error = "Faculty " + html.faculty_id[0];
+            // sub_error = "Subject " + html.subject_id[0];
+            // sem_error = "Semester " + html.semester_id[0];
+            // prog_error = "Program " + html.program_id[0];
+            if (html) {
+              if (html.faculty_id[0]) {
+                alert("Faculty " + html.faculty_id[0]);
+              }else if (html.subject_id[0]) {
+                alert("Subject " + html.subject_id[0]);
+              }else if (html.semester_id[0]) {
+                alert("Semester " + html.semester_id[0]);
+              }
+              else if (html.program_id[0]) {
+                alert("Program " + html.program_id[0]);
+              }
+            }
+            else {
+              document.location.href="/feed_form/thankyou";
+            }
+
+            // console.log(fac_error);
+            // console.log(sub_error);
+            // console.log(sem_error);
+            // console.log(prog_error);
 
         }
       });

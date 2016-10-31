@@ -56,9 +56,17 @@ class FeedFormController < ApplicationController
     #
     # puts "+++++++++++++++++++++++++++++"
 
-    Feedback.create!(rating: sum, subject_id: subject_id, faculty_id: faculty_id, semester_id: semester_id, program_id: program_id, month_no: month_no, year: year)
-    #  to check user has given any rating or nor
-    UserRating.create! user_id: user_id, rating_given: true, subject_id: subject_id, month_no: month_no, year: year
+    @feedback = Feedback.new(rating: sum, subject_id: subject_id, faculty_id: faculty_id, semester_id: semester_id, program_id: program_id, month_no: month_no, year: year)
+    #Feedback.create!(rating: sum, subject_id: subject_id, faculty_id: faculty_id, semester_id: semester_id, program_id: program_id, month_no: month_no, year: year)
+      #  to check user has given any rating or nor
+    if @feedback.save
+      UserRating.create! user_id: user_id, rating_given: true, subject_id: subject_id, month_no: month_no, year: year
+    else
+      render json: @feedback.errors.messages
+      puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+        p @feedback.errors.messages
+      puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    end
   end
 
   def instruction

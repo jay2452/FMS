@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_one :section, through: :user_section
   has_one :user_section
 
+  has_many :user_ratings
+
    def self.import(file)
      spreadsheet = open_spreadsheet(file)   # => defined in ApplicationRecord.rb file
      header = spreadsheet.row 1
