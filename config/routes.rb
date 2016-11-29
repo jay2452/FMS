@@ -37,6 +37,10 @@ Rails.application.routes.draw do
        root "admin#index", :as => "admin"
   end
 
+  authenticated :user, lambda {|u| u.has_role? :super_admin} do
+       root "admin#index", :as => "super_admin"
+  end
+
   devise_scope :user do
     get '/login' => 'devise/sessions#new', as: :login
     delete '/logout' => 'devise/sessions#destroy', as: :logout

@@ -67,3 +67,4 @@ gem 'ckeditor'
 gem 'paperclip'
 
 gem 'roo'
+gem "rails-erd"
